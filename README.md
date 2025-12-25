@@ -105,3 +105,11 @@ cache.get(key);
 | TTL cleanup | amortized O(1) | amortized O(1) |
 
 - **Space Complexity:** O(capacity)
+
+---
+
+## Notes
+
+- Both cache implementations guarantee O(1) average time complexity
+- LFU uses LRU as a tie-breaker within the same frequency
+- Monotonic clocks are used for TTL to avoid system time inconsistencies
