@@ -39,6 +39,18 @@ The project focuses on efficient data structures and realistic cache eviction st
 
 ---
 
+## TTL Expiration Strategy
+
+- TTL is stored as an absolute expiry timestamp per key
+- Expiration is handled using lazy deletion
+- No background threads are used
+- Cleanup occurs during:
+  - get() operations
+  - put() operations when eviction is required
+- This ensures predictable performance and constant-time guarantees.
+
+---
+
 ## Design & Data Structures
 
 ### Common Components
@@ -78,9 +90,12 @@ cache.put(key, value, ttl_ms);
 cache.get(key);
 ```
 
-ttl_ms = -1 indicates no expiration
-get() returns -1 if the key is missing or expired
+- ttl_ms = -1 indicates no expiration
+- get() returns -1 if the key is missing or expired
 
+---
+
+## Time & Space Complexity
 
 | Operation   | LRU            | LFU            |
 | ----------- | -------------- | -------------- |
@@ -89,3 +104,4 @@ get() returns -1 if the key is missing or expired
 | eviction    | O(1)           | O(1)           |
 | TTL cleanup | amortized O(1) | amortized O(1) |
 
+- **Space Complexity:** O(capacity)
