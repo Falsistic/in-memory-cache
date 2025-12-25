@@ -68,4 +68,12 @@ The project focuses on efficient data structures and realistic cache eviction st
 LRUCache cache(capacity);
 cache.put(key, value);
 cache.put(key, value, ttl_ms);
+cache.get(key); 
+```
+### LRU Cache
+```cpp
+LRUCache cache(capacity);
+cache.put(key, value);
+cache.put(key, value, ttl_ms);
 cache.get(key);
+```
