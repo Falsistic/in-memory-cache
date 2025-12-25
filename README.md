@@ -70,10 +70,22 @@ cache.put(key, value);
 cache.put(key, value, ttl_ms);
 cache.get(key); 
 ```
-### LRU Cache
+### LFU Cache
 ```cpp
-LRUCache cache(capacity);
+LFUCache cache(capacity);
 cache.put(key, value);
 cache.put(key, value, ttl_ms);
 cache.get(key);
 ```
+
+ttl_ms = -1 indicates no expiration
+get() returns -1 if the key is missing or expired
+
+
+| Operation   | LRU            | LFU            |
+| ----------- | -------------- | -------------- |
+| get         | O(1)           | O(1)           |
+| put         | O(1)           | O(1)           |
+| eviction    | O(1)           | O(1)           |
+| TTL cleanup | amortized O(1) | amortized O(1) |
+
