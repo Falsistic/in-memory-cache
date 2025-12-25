@@ -52,11 +52,7 @@ public:
         return temp->value;
     }
 
-    void put(int key, int value) {
-        put(key, value, -1);
-    }
-
-    void put(int key, int value, long long ttl_ms) {
+    void put(int key, int value, long long ttl_ms = -1) {
         if (capacity == 0) return;
 
         long long exp = (ttl_ms == -1) ? -1 : now() + ttl_ms;
@@ -103,7 +99,8 @@ public:
                 removeNode(cur);
                 cacheMap.erase(cur->key);
                 delete cur;
-            } else break;
+            } 
+            else break;
         }
     }
 
